@@ -1,0 +1,29 @@
+<?php
+
+class Solution {
+
+    /**
+     * @param String $version1
+     * @param String $version2
+     * @return Integer
+     */
+    function compareVersion($version1, $version2) {
+        $v1 = explode('.', $version1);
+        $v2 = explode('.', $version2);
+
+        $i = 0;
+        while (isset($v1[$i]) or isset($v2[$i])) {
+            $t1 = (int)$v1[$i] or 0;
+            $t2 = (int)$v2[$i] or 0;
+            if ($t1 != $t2) return ($t1<$t2) ? -1 : 1;
+            $i++;
+        }
+        return 0;
+    }
+}
+
+$version1 = "1.01"; 
+$version2 = "1.001";
+$so = new Solution();
+$r = $so->compareVersion($version1, $version2);
+print_r($r);
