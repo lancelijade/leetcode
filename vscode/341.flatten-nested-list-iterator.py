@@ -39,7 +39,7 @@ class NestedInteger:
 
 # @lc code=start
 
-class NestedIterator:
+class NestedIterator2:
     def __init__(self, nestedList: list[NestedInteger]):
 
         def flat(li: list[NestedInteger]):
@@ -62,6 +62,51 @@ class NestedIterator:
     def hasNext(self) -> bool:
         return self.p + 1 < len(self.li)
          
+
+class NestedIterator:
+    def __init__(self, nestedList: list[NestedInteger]):
+        self.p_st = []
+        self.p = -1
+        self.li_st = []
+        self.li = nestedList
+
+
+    def next(self) -> int:
+        if self.p + 1 < len(self.li):
+            self.p += 1
+
+            if self.li[self.p].isInteger():
+                #print(self.li[self.p].getInteger())
+                return self.li[self.p].getInteger()
+            else:
+                self.li_st.append(self.li)
+                self.li = self.li[self.p].getList()
+                self.p_st.append(self.p)
+                self.p = -1
+                return self.next()     
+
+        elif self.li_st:
+            self.li = self.li_st.pop()
+            self.p = self.p_st.pop()
+            return self.next()
+
+    
+    def hasNext(self) -> bool:
+        if self.p + 1 < len(self.li):
+            if self.li[self.p+1].isInteger():
+                return True
+            else:
+                self.li_st.append(self.li)
+                self.li = self.li[self.p+1].getList()
+                self.p_st.append(self.p+1)
+                self.p = -1
+                return self.hasNext()                 
+        elif self.li_st:
+            self.li = self.li_st.pop()
+            self.p = self.p_st.pop()
+            return self.hasNext()
+        else:
+            return False
 
 
 # @lc code=end
