@@ -12,44 +12,29 @@ import heapq
 class Solution:
 
     def furthestBuilding(self, heights: list[int], bricks: int, ladders: int) -> int:
-        i = 0
-        steps = []
-        while i<len(heights)-2:
-            steps.append((heights[i+1] - heights[i], i))
-            i += 1
-        heapq.heapify(steps)
 
-        print(steps)
+        lad = []
+        heapq.heapify(lad)
 
-        visited = [False] * len(heights)
-        while steps:
-            n, i = heapq.heappop(steps)
-            print(n, i)
-            if n<=0:
-                visited[i] = True
-            else:
-                if bricks>=n:
-                    bricks -= n
-                    visited[i] = True
-                elif ladders>0:
-                    ladders -= 1
-                    visited[i] = True
+        for i in range(len(heights)-1):
+            #print(i, heights[i], lad, bricks)
+            diff = heights[i+1] - heights[i]
+            if diff<=0: continue
+
+            heapq.heappush(lad, diff)
+            if len(lad) > ladders:
+                diff = heapq.heappop(lad)
+                if bricks - diff < 0:
+                    return i
                 else:
-                    break
+                    bricks -= diff
+        return i+1
 
-        i = 0
-        while i < len(visited):
-            if not visited[i]:
-                break
-            i += 1
-
-        print(visited)
-        return i
         
         
 # @lc code=end
 
-"""
+
 heights = [4,2,7,6,9,14,12]
 bricks = 5
 ladders = 1
@@ -58,7 +43,7 @@ ladders = 1
 heights = [4,12,2,7,3,18,20,3,19]
 bricks = 10
 ladders = 2
-
+"""
 
 heights = [14,3,19,3]
 bricks = 17
