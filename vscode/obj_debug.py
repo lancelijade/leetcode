@@ -25,3 +25,22 @@ print(ret)
 
 time_end = datetime.now()
 print("---\ntime cost:",time_end-time_start)
+
+
+
+def log(func):
+    def wrapper(*args, **kw):
+        from datetime import datetime 
+        time_start = datetime.now()
+        #print('call %s():' % func.__name__)
+        r = func(*args, **kw)
+        time_end = datetime.now()
+        print("---\ntime cost:",time_end-time_start)
+        return r
+    return wrapper
+
+@log
+def run():
+    so = Solution()
+    r = so.fib(n)
+    print(r)
