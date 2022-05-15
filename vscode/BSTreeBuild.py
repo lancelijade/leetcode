@@ -12,6 +12,23 @@ class Node:
         self.children = children
 
 
+"ListNode"
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+def buildList(root: list[int]) -> ListNode:
+    head = ListNode(0)
+    h = head
+    for n in root:
+        node = ListNode(n)
+        h.next = node
+        h = h.next
+    return head.next
+
+
+
 def BSTreeBuild(root: list[int]) -> TreeNode:
     
     if not root: return None
