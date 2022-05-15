@@ -6,9 +6,11 @@
 
 # @lc code=start
 import bisect
+import heapq
 
 
-class MedianFinder:
+" insort "
+class MedianFinder2:
 
     def __init__(self):
         self.a = []
@@ -23,6 +25,42 @@ class MedianFinder:
         else:
             return (self.a[n//2-1]+self.a[n//2])/2
 
+
+" two heaps "
+class MedianFinder:
+    
+    def __init__(self):
+        self.hp_left = []       # numbers < median
+        self.hp_right = []      # numbers > median
+
+    def rebalance(self) -> None:
+        len1 = len(self.hp_left)
+        len2 = len(self.hp_right)
+        if len1 - len2 > 1:
+            num = -heapq.heappop(self.hp_left)
+            heapq.heappush(self.hp_right, num)
+        elif len2 - len1 > 1:
+            num = heapq.heappop(self.hp_right)
+            heapq.heappush(self.hp_left, -num)
+
+    def addNum(self, num: int) -> None:
+        if not self.hp_left or num < -self.hp_left[0]:      
+            heapq.heappush(self.hp_left, -num)
+        else:
+            heapq.heappush(self.hp_right, num)
+
+        self.rebalance()
+        #print(num, self.hp_left, self.hp_right)
+
+    def findMedian(self) -> float:
+        len1 = len(self.hp_left)
+        len2 = len(self.hp_right)
+        if len1 == len2:
+            return (-self.hp_left[0] + self.hp_right[0])/2
+        elif len1 > len2:
+            return -self.hp_left[0]
+        else:
+            return self.hp_right[0]
 
 
 # @lc code=end
