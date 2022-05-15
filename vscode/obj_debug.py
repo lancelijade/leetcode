@@ -27,6 +27,8 @@ time_end = datetime.now()
 print("---\ntime cost:",time_end-time_start)
 
 
+class Solution:
+    1
 
 def log(func):
     def wrapper(*args, **kw):
@@ -42,5 +44,7 @@ def log(func):
 @log
 def run():
     so = Solution()
-    r = so.fib(n)
+    r = so.fib()
     print(r)
+
+run()
