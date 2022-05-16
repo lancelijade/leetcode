@@ -42,9 +42,11 @@ def log(func):
     return wrapper
 
 @log
-def run():
+def run(*args, **kw):
     so = Solution()
-    r = so.fib()
+    r = so.numDistinctIslands(*args, **kw)
     print(r)
 
-run()
+grid = [[1,1,0,0,0],[1,1,0,0,0],[0,0,0,1,1],[0,0,0,1,1]]
+#grid = [[1,1,0,1,1],[1,0,0,0,0],[0,0,0,0,1],[1,1,0,1,1]]
+run(grid)
