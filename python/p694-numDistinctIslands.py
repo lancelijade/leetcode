@@ -1,3 +1,5 @@
+from collections import deque
+
 class Solution:
 
     def numDistinctIslands(self, grid: list[list[int]]) -> int:
@@ -13,7 +15,7 @@ class Solution:
                         q.append((nx, ny))
 
             while q:
-                nx, ny = q.pop()
+                nx, ny = q.popleft()
                 li = bfs(grid, nx, ny, li)
 
             return
@@ -36,7 +38,7 @@ class Solution:
         for i in range(m):
             for j in range(n):
                 if grid[i][j] == 1:
-                    q = []
+                    q = deque()
                     r = []
                     bfs(grid, i, j, r)
                     #print(r)
