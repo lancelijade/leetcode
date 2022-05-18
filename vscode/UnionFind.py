@@ -20,5 +20,5 @@ class UnionFind:
                 self.root[rootY] = rootX
                 self.rank[rootX] += 1
 
-    def connected(self, x, y) -> int:
+    def connected(self, x: int, y: int) -> bool:
         return self.find(x) == self.find(y)
