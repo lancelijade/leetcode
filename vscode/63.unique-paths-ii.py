@@ -34,14 +34,14 @@ class Solution:
         if obstacleGrid[m-1][n-1] == 1: return 0
 
         @cache
-        def bfs(x: int, y: int) -> int:
+        def dfs(x: int, y: int) -> int:
             if (x, y) == (m-1, n-1):
                 return 1
             if x>=m or y>=n or obstacleGrid[x][y] == 1:
                 return 0
-            return bfs(x+1, y) + bfs(x, y+1)
+            return dfs(x+1, y) + dfs(x, y+1)
 
-        return bfs(0, 0)
+        return dfs(0, 0)
 
         
 # @lc code=end
