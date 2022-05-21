@@ -27,9 +27,21 @@ class Solution:
         return -1 if mi == math.inf else mi
 
 
-    def coinChange(self, coins: list[int], amount: int) -> int:
+    def coinChange2(self, coins: list[int], amount: int) -> int:
         self.coins = coins
         return self.dp(amount)
+
+
+    def coinChange(self, coins: list[int], amount: int) -> int:
+        dp = [math.inf] * (amount + 1)
+        dp[0] = 0
+
+        for i in range(1, amount+1):
+            for c in coins:
+                if i-c >= 0:
+                    dp[i] = min(dp[i], dp[i-c] + 1)
+
+        return -1 if dp[amount] == math.inf else dp[amount]
 
         
 # @lc code=end
