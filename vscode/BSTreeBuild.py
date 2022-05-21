@@ -130,6 +130,22 @@ class Tree:
 
         return a[0]
 
+
+    def search(self, root: TreeNode, val: int) -> TreeNode:
+    
+        if not root or not root.val:
+            return None
+        
+        elif val == root.val:
+            return root
+
+        elif val < root.val:
+            return self.search(root.left, val)
+
+        else:
+            return self.search(root.right, val)
+
+
     def preorder(self, root: TreeNode) -> list[int]:
         if not root: return []
         return [root.val] + self.preorder(root.left) + self.preorder(root.right)
