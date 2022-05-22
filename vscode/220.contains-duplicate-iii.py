@@ -8,8 +8,7 @@
 
 import bisect
 
-
-class Solution:
+class Solution2:
     def containsNearbyAlmostDuplicate(self, nums: list[int], k: int, t: int) -> bool:
 
         def find_and_insert(n):
@@ -25,7 +24,7 @@ class Solution:
         for i in range(min(k+1, len(nums))):
             r = find_and_insert(nums[i])
             if r == True: return True
-            
+
         s = 0
         i = k+1
         while i < len(nums):
@@ -41,6 +40,35 @@ class Solution:
         return False
 
         
+
+class Solution:
+    def containsNearbyAlmostDuplicate(self, nums: list[int], k: int, t: int) -> bool:
+        1
+
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+
+class BSTree:
+    
+    def search(self, root: TreeNode, val: int) -> TreeNode:
+        
+        if not root or not root.val:
+            return None
+        
+        elif val == root.val:
+            return root
+
+        elif val < root.val:
+            return self.search(root.left, val)
+
+        else:
+            return self.search(root.right, val)
+
         
 # @lc code=end
 
