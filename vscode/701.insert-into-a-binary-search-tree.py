@@ -16,7 +16,7 @@ class TreeNode:
 
 # @lc code=start
 class Solution:
-    def insertIntoBST(self, root: TreeNode, val: int) -> TreeNode:
+    def insertIntoBST2(self, root: TreeNode, val: int) -> TreeNode:
         
         def insert(root: TreeNode, val: int):
             if val < root.val:
@@ -37,6 +37,23 @@ class Solution:
         insert(root, val)
         return root
             
+
+    def insertIntoBST(self, root: TreeNode, val: int) -> TreeNode:
+        if not root: return TreeNode(val)
+
+        if val < root.val:
+            if root.left:
+                root.left = self.insertIntoBST(root.left, val)
+            else:
+                root.left = TreeNode(val)
+        else:
+            if root.right:
+                root.right = self.insertIntoBST(root.right, val)
+            else:
+                root.right = TreeNode(val)
+        
+        return root
+
         
 # @lc code=end
 
