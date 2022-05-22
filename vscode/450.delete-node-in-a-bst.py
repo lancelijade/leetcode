@@ -16,14 +16,14 @@ class TreeNode:
 
 class Solution:
 
-    def successor(self, root: TreeNode) -> TreeNode:
-        root = root.right
-        while root.left:
-            root = root.left
-        return root
-
-
     def deleteNode(self, root: TreeNode, key: int) -> TreeNode:
+
+        def successor(root: TreeNode) -> TreeNode:
+            root = root.right
+            while root.left:
+                root = root.left
+            return root
+
         if not root:
             return None
         
@@ -43,8 +43,8 @@ class Solution:
             if not root.right:
                 return root.left
 
-            successor = self.successor(root)
-            root.val = successor.val
+            ss = successor(root)
+            root.val = ss.val
             root.right = self.deleteNode(root.right, root.val)
 
         return root
