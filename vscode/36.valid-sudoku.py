@@ -6,33 +6,31 @@
 
 # @lc code=start
 class Solution:
-
+    
     def validRow(self, row: int) -> bool:
-        v = 0
+        v = [0] * 9
         for i in range(9):
             n = self.board[row][i]
             if n != '.':
                 n = int(n) - 1
-                if v & 2 ** n : return False
-                v ^= 2 ** n
-        #print("{0:b}".format(v))
+                if v[n]: return False
+                v[n] = 1
         return True
 
 
     def validCol(self, col: int) -> bool:
-        v = 0
+        v = [0] * 9
         for i in range(9):
             n = self.board[i][col]
             if n != '.':
                 n = int(n) - 1
-                if v & 2 ** n : return False
-                v ^= 2 ** n
-        #print("{0:b}".format(v))
+                if v[n]: return False
+                v[n] = 1
         return True
 
 
     def validBox(self, x: int, y: int) -> bool:
-        v = 0
+        v = [0] * 9
         x = x // 3 * 3
         y = y // 3 * 3
         for i in range(x, x+3):
@@ -40,9 +38,8 @@ class Solution:
                 n = self.board[i][j]
                 if n != '.':
                     n = int(n) - 1
-                    if v & 2 ** n : return False
-                    v ^= 2 ** n
-        #print("{0:b}".format(v))
+                    if v[n]: return False
+                    v[n] = 1
         return True
 
 
