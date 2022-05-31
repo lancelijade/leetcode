@@ -45,13 +45,9 @@ class Solution:
         return True
 
 
-    def validPos(self, x: int, y: int) -> bool:
-        return self.validRow(x) and self.validCol(y) and self.validBox(x, y)
-
-
     def place(self, x: int, y: int, n: int) -> bool:
         self.board[x][y] = str(n)
-        if self.validPos(x, y): 
+        if self.validRow(x) and self.validCol(y) and self.validBox(x, y):
             return True
         else:
             return False
@@ -63,24 +59,23 @@ class Solution:
 
     def backtrace(self, x: int, y: int) -> bool:
         #print(x, y, self.board[0], self.board[1])
-        if self.board[x][y] == ".":
+
+        nx = x
+        ny = (y + 1) % 9
+        if ny == 0: nx = (x + 1) % 9
+        
+        if self.board[x][y] != ".":
+            if (x, y) == (8, 8): return True
+            ne = self.backtrace(nx, ny)
+            if ne: return True
+
+        else:
             for i in range(1, 10):
                 r = self.place(x, y, i)
                 if r:
-                    if (x, y) == (8, 8): return True
-                    nx = x
-                    ny = (y + 1) % 9
-                    if ny == 0: nx = (x + 1) % 9
                     ne = self.backtrace(nx, ny)
                     if ne: return True
                 self.remove(x, y)
-        else:
-            if (x, y) == (8, 8): return True
-            nx = x
-            ny = (y + 1) % 9
-            if ny == 0: nx = (x + 1) % 9
-            ne = self.backtrace(nx, ny)
-            if ne: return True
 
 
     def solveSudoku(self, board: list[list[str]]) -> None:
