@@ -7,18 +7,17 @@
 # @lc code=start
 class Solution:
     def hasAllCodes(self, s: str, k: int) -> bool:
-        a = [0] * 2 ** k
+        t = set()
         for i in range(len(s)-k+1):
-            n = int(s[i:i+k], 2)
-            a[n] = 1
-        #print(a)
-        return sum(a) == 2 ** k
+            t.add(s[i:i+k])
+        print(t)
+        return len(t) == 2 ** k
 
         
 # @lc code=end
 
 s = "00110110"
-k = 1
+k = 3
 
 so = Solution()
 r = so.hasAllCodes(s, k)
