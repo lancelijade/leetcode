@@ -5,25 +5,29 @@
 #
 
 # @lc code=start
-from collections import defaultdict
-
 class MyHashSet:
 
+    N = 769
+
     def __init__(self):
-        self.key = defaultdict(int)
+        self.buckets = [[] for _ in range(self.N)]
         
 
     def add(self, key: int) -> None:
-        self.key[key] = 1
+        n = key % self.N
+        if key not in self.buckets[n]:
+            self.buckets[n].append(key)
         
 
     def remove(self, key: int) -> None:
         if self.contains(key):
-            del self.key[key]
+            n = key % self.N
+            self.buckets[n].remove(key)
         
 
     def contains(self, key: int) -> bool:
-        return key in self.key
+        n = key % self.N
+        return key in self.buckets[n]
 
 
 # @lc code=end
