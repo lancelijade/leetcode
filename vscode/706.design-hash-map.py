@@ -12,33 +12,24 @@ class MyHashMap:
         self.v = []
 
     def put(self, key: int, value: int) -> None:
-        k = hash(key)
-        if k not in self.h:
-            self.h.append(k)
+        if key not in self.h:
+            self.h.append(key)
             self.v.append(value)
         else:
-            self.v[self.h.index(k)] = value
+            self.v[self.h.index(key)] = value
 
 
     def get(self, key: int) -> int:
-        k = hash(key)
-        if k in self.h:
-            return self.v[self.h.index(k)]
+        if key in self.h:
+            return self.v[self.h.index(key)]
         else:
             return -1
 
     def remove(self, key: int) -> None:
-        k = hash(key)
-        if k in self.h:
-            i = self.h.index(k)
+        if key in self.h:
+            i = self.h.index(key)
             self.h[i] = self.v[i] = None
 
-
-# Your MyHashMap object will be instantiated and called as such:
-# obj = MyHashMap()
-# obj.put(key,value)
-# param_2 = obj.get(key)
-# obj.remove(key)
 
 # @lc code=end
 
