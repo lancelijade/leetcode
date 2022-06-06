@@ -6,7 +6,7 @@
 
 # @lc code=start
 class Solution:
-    def getSkyline(self, buildings: 'List[List[int]]') -> 'List[List[int]]':
+    def getSkyline(self, buildings: 'list[list[int]]') -> 'list[list[int]]':
         """
         Divide-and-conquer algorithm to solve skyline problem,
         which is similar with the merge sort algorithm.
