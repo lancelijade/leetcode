@@ -20,9 +20,15 @@ class MyHashSet:
         
 
     def remove(self, key: int) -> None:
-        if self.contains(key):
-            n = key % self.N
-            self.buckets[n].remove(key)
+        n = key % self.N
+        try:
+            i = self.buckets[n].index(key)
+        except ValueError:
+            return
+        
+        if i != len(self.buckets[n]):
+            self.buckets[n][i], self.buckets[n][-1] = self.buckets[n][-1], self.buckets[n][i]
+        self.buckets[n].pop()
         
 
     def contains(self, key: int) -> bool:
