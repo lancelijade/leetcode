@@ -16,8 +16,11 @@ class Solution:
         for i in range(1, size):
             leftmax[i] = max(leftmax[i-1], height[i])
 
-        for i in range(size-2, 0, -1):
+        for i in range(size-2, -1, -1):
             rightmax[i] = max(rightmax[i+1], height[i])
+
+        #print(leftmax)
+        #print(rightmax)
 
         r = 0
         for i in range(size):
@@ -30,6 +33,7 @@ class Solution:
 # @lc code=end
 
 height = [0,1,0,2,1,0,1,3,2,1,2,1]
+height = [4,2,0,3,2,5]
 
 so = Solution()
 r = so.trap(height)
