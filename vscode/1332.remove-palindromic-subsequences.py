@@ -8,12 +8,13 @@
 class Solution:
     def removePalindromeSub(self, s: str) -> int:
 
-        if s.find('a') != -1 and s.find('b') != -1:
-            if s == s[::-1]:
-                return 1
-            return 2
-        else:
+        if not s:
+            return 0
+
+        if s == s[::-1]:
             return 1
+
+        return 2
 
         
 # @lc code=end
