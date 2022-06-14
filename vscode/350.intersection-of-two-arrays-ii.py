@@ -6,9 +6,10 @@
 
 # @lc code=start
 from functools import cache
+from typing import Counter
 
 class Solution:
-    def intersect(self, nums1: list[int], nums2: list[int]) -> list[int]:
+    def intersect2(self, nums1: list[int], nums2: list[int]) -> list[int]:
         
         @cache
         def lcs(i, j):
@@ -28,6 +29,21 @@ class Solution:
         l1 = sorted(nums1)
         l2 = sorted(nums2)
         return lcs(len(nums1), len(nums2))
+
+
+    def intersect(self, nums1: list[int], nums2: list[int]) -> list[int]:
+
+        if len(nums1) > len(nums2):
+            nums1, nums2 = nums2, nums1
+
+        c = Counter(nums1)
+        r = []
+        for n in nums2:
+            if n in c and c[n] > 0:
+                c[n] -= 1
+                r.append(n)
+
+        return r
 
         
 # @lc code=end
