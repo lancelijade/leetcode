@@ -23,14 +23,15 @@ class BSTree:
         for i in range(1, len(ary)):
             if i % 2 == 1:
                 node = q.popleft()
-                if ary[i]:
+                if ary[i] is not None:
                     node.left = TreeNode(ary[i])
                     q.append(node.left)
             else:
-                if ary[i]:
+                if ary[i] is not None:
                     node.right = TreeNode(ary[i])
                     q.append(node.right)
         return self.head
+
 
 
     '以下方法独立调用, 不自动使用 self.head'
