@@ -7,17 +7,22 @@ in1 = ["MyQueue", "push", "push", "peek", "pop", "empty"]
 in2 = [[], [1], [2], [], [], []]
 
 o = None
-ret = [None]
+cmd = []
+ret = []
 if in2[0]:
-    exec('o = {}({})'.format(in1[0], in2[0][0]))
+    cmd.append('o = {}({})'.format(in1[0], in2[0][0]))
 else:
-    exec('o = {}()'.format(in1[0]))
+    cmd.append('o = {}()'.format(in1[0]))
 
 for i in range(1, len(in1)):
     if (len(in2[i])>0):
-        exec('ret.append(o.{}({}))'.format(in1[i], in2[i][0]))
+        cmd.append('ret.append(o.{}({}, "{}"))'.format(in1[i], in2[i][0], in2[i][1]))
     else:
-        exec('ret.append(o.{}())'.format(in1[i]))
+        cmd.append('ret.append(o.{}())'.format(in1[i]))
+
+for cmdd in cmd:
+    print(cmdd)
+    exec(cmdd)
 
 print(ret)
 
