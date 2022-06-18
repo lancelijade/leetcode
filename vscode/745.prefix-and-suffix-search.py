@@ -6,7 +6,6 @@
 
 # @lc code=start
 from collections import defaultdict
-from functools import cache
 
 class WordFilter:
 
