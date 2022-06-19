@@ -1,10 +1,3 @@
-#
-# @lc app=leetcode id=211 lang=python3
-#
-# [211] Design Add and Search Words Data Structure
-#
-
-# @lc code=start
 from collections import defaultdict
 Trie = lambda: defaultdict(Trie)
 
