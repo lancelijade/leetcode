@@ -10,11 +10,8 @@ class WordDictionary:
     def addWord(self, word: str) -> None:
         cur = self.trie
         for ch in word:
-            if ch not in cur:
-                cur[ch] = {}
             cur = cur[ch]
         cur['$'] = True
-        #print(self.trie)
 
 
     def search(self, word: str, cur=None) -> bool:
