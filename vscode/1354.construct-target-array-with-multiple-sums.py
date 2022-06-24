@@ -5,9 +5,12 @@
 #
 
 # @lc code=start
+import heapq
+
+
 class Solution:
 
-    def isPossible(self, target: list[int]) -> bool:
+    def isPossible2(self, target: list[int]) -> bool:
 
         if target == [1]: return True
         size = len(target)
@@ -33,6 +36,36 @@ class Solution:
             if sum(target) == size: return True
 
 
+    def isPossible(self, target: list[int]) -> bool:
+    
+        size = len(target)
+        if size == 1: 
+            return target == [1]
+
+        su = sum(target)
+        for i in range(size):
+            target[i] = -target[i]
+        heapq.heapify(target)
+
+        while 1:
+            #print(target)
+
+            ma = -heapq.heappop(target)
+            other = su - ma
+            if other == 1:
+                return True
+
+            n = ma % other
+            #print(ma, other, n)
+            if n == ma or n == 0: 
+                return False
+
+            heapq.heappush(target, -n)
+            su -= ma - n
+            
+            if sum(target) == -size: return True
+
+
 # @lc code=end
 
 
@@ -55,9 +88,9 @@ def run(*args, **kw):
     print(r)
 
 target = [9,3,5]
-#target = [1,1,1,2]
-#target = [8,5]
-#target = [1,1000000000]
+target = [1,1,1,2]
+target = [8,5]
+target = [1,1000000000]
 #target = [1]
 
 run(target)
