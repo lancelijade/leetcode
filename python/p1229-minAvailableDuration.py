@@ -10,7 +10,7 @@ class Solution:
             a1, b1 = slots1[i]
             a2, b2 = slots2[j]
 
-            print(i, a1, b1, j, a2, b2)
+            #print(i, a1, b1, j, a2, b2)
 
             if a1 > b2:
                 j += 1
@@ -23,13 +23,6 @@ class Solution:
             bmin = min(b1, b2)
             if bmin - amax >= duration:
                 return [amax, amax+duration]
-            elif a1 == a2:
-                if b1 > b2:
-                    i += 1
-                    continue
-                else:
-                    j += 1
-                    continue
             elif b1 > b2:
                 j += 1
                 continue
