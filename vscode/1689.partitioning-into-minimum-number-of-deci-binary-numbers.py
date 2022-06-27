@@ -7,9 +7,7 @@
 # @lc code=start
 class Solution:
     def minPartitions(self, n: str) -> int:
-        n = list(n)
-        n.sort()
-        return int(n[-1])
+        return max(n)
 
 
         
