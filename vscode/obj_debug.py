@@ -8,7 +8,7 @@ in2 = [[], [1], [2], [], [], []]
 
 o = None
 cmd = []
-ret = []
+ret = [None]
 if in2[0]:
     cmd.append('o = {}({})'.format(in1[0], in2[0][0]))
 else:
