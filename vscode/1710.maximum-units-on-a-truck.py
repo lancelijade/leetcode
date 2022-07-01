@@ -18,7 +18,7 @@ class Solution:
                 r += n * cnt
             else:
                 r += (truckSize - rn) * cnt
-                rn = truckSize
+                break
             #print(rn, r, n, cnt)
 
         return r
