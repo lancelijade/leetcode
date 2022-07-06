@@ -34,34 +34,35 @@ class WordDictionary:
         return self.search(word[1:], cur[ch])
 
 
-# @lc code=end
 
-in1 = ["WordDictionary","addWord","addWord","addWord","search","search","search","search"]
-in2 = [[],["bad"],["dad"],["mad"],["pad"],["bad"],[".ad"],["b.."]]
+if __name__ == "__main__":
 
-in1 = ["WordDictionary","addWord","addWord","search","search","search","search","search","search"]
-in2 = [[],["a"],["a"],["."],["a"],["aa"],["a"],[".a"],["a."]]
+    in1 = ["WordDictionary","addWord","addWord","addWord","search","search","search","search"]
+    in2 = [[],["bad"],["dad"],["mad"],["pad"],["bad"],[".ad"],["b.."]]
 
-in1 = ["WordDictionary","addWord","addWord","addWord","addWord","search","search","addWord","search","search","search","search","search","search"]
-in2 = [[],["at"],["and"],["an"],["add"],["a"],[".at"],["bat"],[".at"],["an."],["a.d."],["b."],["a.d"],["."]]
-#[null,null,null,null,null,false,false,null,true,true,false,false,true,false]
+    in1 = ["WordDictionary","addWord","addWord","search","search","search","search","search","search"]
+    in2 = [[],["a"],["a"],["."],["a"],["aa"],["a"],[".a"],["a."]]
 
-o = None
-cmd = []
-ret = []
-if in2[0]:
-    cmd.append('o = {}({})'.format(in1[0], in2[0][0]))
-else:
-    cmd.append('o = {}()'.format(in1[0]))
+    in1 = ["WordDictionary","addWord","addWord","addWord","addWord","search","search","addWord","search","search","search","search","search","search"]
+    in2 = [[],["at"],["and"],["an"],["add"],["a"],[".at"],["bat"],[".at"],["an."],["a.d."],["b."],["a.d"],["."]]
+    #[null,null,null,null,null,false,false,null,true,true,false,false,true,false]
 
-for i in range(1, len(in1)):
-    if (len(in2[i])>0):
-        cmd.append('ret.append(o.{}("{}"))'.format(in1[i], in2[i][0]))
+    o = None
+    cmd = []
+    ret = []
+    if in2[0]:
+        cmd.append('o = {}({})'.format(in1[0], in2[0][0]))
     else:
-        cmd.append('ret.append(o.{}())'.format(in1[i]))
+        cmd.append('o = {}()'.format(in1[0]))
 
-for cmdd in cmd:
-    print(cmdd)
-    exec(cmdd)
+    for i in range(1, len(in1)):
+        if (len(in2[i])>0):
+            cmd.append('ret.append(o.{}("{}"))'.format(in1[i], in2[i][0]))
+        else:
+            cmd.append('ret.append(o.{}())'.format(in1[i]))
 
-print(ret)
+    for cmdd in cmd:
+        print(cmdd)
+        exec(cmdd)
+
+    print(ret)

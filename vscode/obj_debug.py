@@ -1,35 +1,38 @@
-from datetime import datetime 
-time_start = datetime.now()
+if __name__ == "__main__":
+    
+    from var_dump import var_dump
+    from datetime import datetime 
+    time_start = datetime.now()
 
+    in1 = ["MyQueue", "push", "push", "peek", "pop", "empty"]
+    in2 = [[], [1], [2], [], [], []]
 
-
-in1 = ["MyQueue", "push", "push", "peek", "pop", "empty"]
-in2 = [[], [1], [2], [], [], []]
-
-o = None
-cmd = []
-ret = [None]
-if in2[0]:
-    cmd.append('o = {}({})'.format(in1[0], in2[0][0]))
-else:
-    cmd.append('o = {}()'.format(in1[0]))
-
-for i in range(1, len(in1)):
-    if (len(in2[i])>0):
-        cmd.append('ret.append(o.{}({}, "{}"))'.format(in1[i], in2[i][0], in2[i][1]))
+    o = None
+    cmd = []
+    ret = [None]
+    if in2[0]:
+        cmd.append('o = {}({})'.format(in1[0], in2[0][0]))
     else:
-        cmd.append('ret.append(o.{}())'.format(in1[i]))
+        cmd.append('o = {}()'.format(in1[0]))
 
-for cmdd in cmd:
-    print(cmdd)
-    exec(cmdd)
+    for i in range(1, len(in1)):
+        if len(in2[i])>0:
+            msg = ",".join(map(str, in2[i]))
+            cmd.append('ret.append(o.{}({}))'.format(in1[i], msg))
+        else:
+            cmd.append('ret.append(o.{}())'.format(in1[i]))
 
-print(ret)
+    for cmdd in cmd:
+        print(cmdd)
+        exec(cmdd)
+        var_dump(o)
+        print("=====\n")
+
+    print(ret)
 
 
-
-time_end = datetime.now()
-print("---\ntime cost:",time_end-time_start)
+    time_end = datetime.now()
+    print("---\ntime cost:",time_end-time_start)
 
 
 class Solution:
