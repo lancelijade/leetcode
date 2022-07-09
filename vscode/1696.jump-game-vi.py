@@ -5,9 +5,9 @@
 #
 
 # @lc code=start
-from functools import cache
+#from functools import cache
 import heapq
-import math
+#import math
 
 
 class Solution:
@@ -43,7 +43,7 @@ class Solution:
         size = len(nums)
         if size == 1:
             return nums[0]
-            
+
         q = [(-nums[0], 0)]
         heapq.heapify(q)
 
