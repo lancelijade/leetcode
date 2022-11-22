@@ -4,7 +4,6 @@
 # [279] Perfect Squares
 #
 from collections import defaultdict, deque
-from var_dump import var_dump
 import pprint
 pp = pprint.PrettyPrinter()
 from datetime import datetime 
